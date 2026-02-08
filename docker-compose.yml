@@ -1,0 +1,41 @@
+services:
+  # EXTRACT/LOAD : PostgreSQL
+  postgres:
+    image: postgres:15
+    container_name: csgo_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: csgo_user
+      POSTGRES_PASSWORD: csgo_pass
+      POSTGRES_DB: csgo_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - csgo_network
+
+  # VISUALISATION : Metabase
+  metabase:
+    image: metabase/metabase:latest
+    container_name: csgo_metabase
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./metabase-data:/metabase-data
+    environment:
+      - MB_DB_FILE=/metabase-data/metabase.db
+    depends_on:
+      - postgres
+    networks:
+      - csgo_network
+
+# Connexion à la db : postgresql://csgo_user:csgo_pass@localhost:5432/csgo_db
+# user : epsi@gmail.com / password : azerty1234!
+
+volumes:
+  postgres_data:
+
+networks:
+  csgo_network:
+    driver: bridge
