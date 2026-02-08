@@ -8,7 +8,7 @@
 
 ## Jeu de Donnees (Etape 1)
 * **Source :** https://www.kaggle.com/datasets/mateusdmachado/csgo-professional-matches
-* **Contenu :** Environ 50 000 matchs competitifs (2019-2020).
+* **Contenu :** Environ 50 000 matchs competitifs.
 * **Caracteristiques :** 4 fichiers CSV (results.csv, players.csv, picks.csv, economy.csv) contenant des statistiques in-game detaillees.
 
 ---
