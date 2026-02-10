@@ -43,6 +43,62 @@ Ce script automatise l'extraction/importation (Extract-Load) et la restructurati
 
 ## Modèle relationnel (Etape 3)
 
+player
+player_team_match 
+    id_player(pk;fk)
+    id_team_match(pk;fk)
+    stats_joueur_dans_match
+
+team
+team_match
+    id_team(pk;fk)
+    id_match(pk;fk)
+    winner: bool
+    stat_team_dans_match
+match
+id_match(pk)
+id_map(fk)
+
+map 
+id_map(pk)
+
+## Modèle Dimensionnel
+DimPlayer
+nom
+age
+
+DimMap
+nom
+
+DimTeam
+nom
+
+DimMatch
+
+
+DimDate
+jourssemaine
+joursmois
+mois
+annee
+trimester
+semestre
+
+Fait_participationJoueur
+fk_dim_player
+fk_dim_match
+fk_dim_team
+fk_dim_map
+fk_dim_date
+stats
+
+Fait_ParticipationTeam
+fk_dim_match
+fk_dim_team
+fk_dim_map
+fk_dim_date
+stats
+
 Table de Faits (fact_player_stats) : Le cœur du projet. Stocke les chiffres (Kills, Deaths, Rating). Chaque ligne est une performance unique d'un joueur dans un match.
 
 Table de Faits (fact_matches) : Regroupe le contexte des matchs (Map, Date, Score final, Vainqueur).
